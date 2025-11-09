@@ -1,0 +1,55 @@
+/* style.css */
+
+/* 1. กำหนด Accent Color (สีเน้น) */
+:root {
+    --accent-color: #00C897; /* สีเขียวมิ้นต์/เขียวอ่อนที่ดูสดใสและโมเดิร์น */
+    --bs-accent-rgb: 0, 200, 151;
+}
+
+/* 2. Custom Class สำหรับใช้ใน HTML */
+.text-accent {
+    color: var(--accent-color) !important;
+}
+
+.bg-accent {
+    background-color: var(--accent-color) !important;
+}
+
+.btn-accent {
+    color: #fff;
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.btn-accent:hover {
+    color: #fff;
+    background-color: #00a67a; /* สีเข้มขึ้นเมื่อ hover */
+    border-color: #00a67a;
+}
+
+/* 3. การจัดวาง Spacing (เพื่อให้ดูโปร่ง) */
+#header {
+    min-height: 90vh; /* เพิ่มความสูงเพื่อให้มีพื้นที่ว่างมากขึ้น */
+    display: flex;
+    align-items: center;
+    padding-top: 100px !important; 
+    background: #ffffff; /* พื้นหลังสีขาวสะอาด */
+}
+
+/* 4. Effect สำหรับ Social Link (Modern Hover Effect) */
+.hover-accent:hover {
+    color: var(--accent-color) !important;
+    transition: color 0.3s ease-in-out;
+}
+
+/* 5. ปรับปรุง Typography */
+h1, h2, h3, h4, h5 {
+    letter-spacing: -0.5px; /* ทำให้หัวข้อดูแน่นและโมเดิร์นขึ้นเล็กน้อย */
+}
+
+/* ปรับให้รูปภาพ App ดูดีขึ้น */
+#header img {
+    max-width: 90%; 
+    margin: 0 auto;
+    display: block;
+}

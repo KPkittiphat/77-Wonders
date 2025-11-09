@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community & Review - 77 Wonders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/styles.css">
+    
+    <style>
+        :root {
+            --accent-color: #00C897;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 100px 0 80px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 200, 151, 0.3) !important;
+        }
+
+        .review-card {
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+        }
+
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+        }
+
+        .text-accent { color: var(--accent-color) !important; }
+        .bg-accent { background-color: var(--accent-color) !important; }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-accent:hover {
+            background-color: #00a67a;
+            border-color: #00a67a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 200, 151, 0.3);
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .community-feature {
+            padding: 25px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .community-feature:hover {
+            background: rgba(0, 200, 151, 0.05);
+            transform: translateX(10px);
+        }
+
+        .badge-level {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        /* Region filter styles */
+        .region-filter {
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .region-filter.active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+        
+        .filter-container {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container py-2">
+            <a class="navbar-brand fw-bold text-dark" href="index.html">
+                <i class="fas fa-route text-accent"></i> 77 WONDERS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html#features">จุดเด่น</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html#price">รายการราคา</a></li>
+                    <li class="nav-item"><a class="nav-link btn bg-accent text-white ms-lg-3 px-4 shadow-sm" href="about.html">ทีมงาน</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section text-center">
+        <div class="container">
+            <i class="fas fa-users fa-5x mb-4" style="animation: float 3s ease-in-out infinite;"></i>
+            <h1 class="display-3 fw-bold mb-3">Community & Review</h1>
+            <p class="lead mb-4" style="max-width: 800px; margin: 0 auto;">
+                เชื่อมต่อกับนักเดินทางคนอื่นๆ แบ่งปันประสบการณ์<br>
+                อ่านรีวิวจริงจากผู้ใช้งานจริง เพื่อการตัดสินใจที่ดีกว่า
+            </p>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="text-center mb-2 fw-light text-secondary">ชุมชนนักเดินทาง</h2>
+            <h3 class="text-center mb-5 display-6 fw-bold text-dark">เชื่อมต่อกับผู้คนที่มีใจรักการท่องเที่ยว</h3>
+            
+            <div class="row g-4 mb-5">
+                <div class="col-md-3">
+                    <div class="stat-box">
+                        <i class="fas fa-users fa-3x mb-3"></i>
+                        <h2 class="display-5 fw-bold mb-2">50K+</h2>
+                        <p class="mb-0">สมาชิกในชุมชน</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-box">
+                        <i class="fas fa-comment-dots fa-3x mb-3"></i>
+                        <h2 class="display-5 fw-bold mb-2">200K+</h2>
+                        <p class="mb-0">รีวิวและความคิดเห็น</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-box">
+                        <i class="fas fa-images fa-3x mb-3"></i>
+                        <h2 class="display-5 fw-bold mb-2">1M+</h2>
+                        <p class="mb-0">รูปภาพจากผู้ใช้</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-box">
+                        <i class="fas fa-trophy fa-3x mb-3"></i>
+                        <h2 class="display-5 fw-bold mb-2">5K+</h2>
+                        <p class="mb-0">ผู้เชี่ยวชาญท้องถิ่น</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 display-6 fw-bold text-dark">ฟีเจอร์ชุมชน</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="community-feature bg-white rounded-4 shadow-sm">
+                        <i class="fas fa-pen fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">เขียนรีวิว</h5>
+                        <p class="text-secondary mb-0">แบ่งปันประสบการณ์การเดินทางของคุณ ช่วยให้คนอื่นได้รับข้อมูลที่เป็นประโยชน์</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="community-feature bg-white rounded-4 shadow-sm">
+                        <i class="fas fa-camera fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">แชร์รูปภาพ</h5>
+                        <p class="text-secondary mb-0">อัพโหลดรูปภาพสวยๆ จากการเดินทาง สร้างแรงบันดาลใจให้คนอื่น</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="community-feature bg-white rounded-4 shadow-sm">
+                        <i class="fas fa-question-circle fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">ถาม-ตอบ</h5>
+                        <p class="text-secondary mb-0">ถามคำถามเกี่ยวกับการเดินทาง รับคำตอบจากผู้เชี่ยวชาญและนักเดินทางมากประสบการณ์</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="community-feature bg-white rounded-4 shadow-sm">
+                        <i class="fas fa-users-cog fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">กลุ่มสนใจ</h5>
+                        <p class="text-secondary mb-0">เข้าร่วมกลุ่มตามความสนใจ เช่น ถ่ายรูป ปีนเขา ดำน้ำ หรือกินเที่ยว</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="community-feature bg-white rounded-4 shadow-sm">
+                        <i class="fas fa-calendar-alt fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">อีเวนต์ชุมชน</h5>
+                        <p class="text-secondary mb-0">เข้าร่วมกิจกรรมท่องเที่ยวกลุ่ม พบปะเพื่อนใหม่ที่มีความสนใจเหมือนกัน</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="community-feature bg-white rounded-4 shadow-sm">
+                        <i class="fas fa-award fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">ระบบเลเวล</h5>
+                        <p class="text-secondary mb-0">สะสมแต้มจากการรีวิว แชร์ และช่วยเหลือคนอื่น ปลดล็อคสิทธิพิเศษ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 display-6 fw-bold text-dark">รีวิวจากสมาชิก</h2>
+            
+            <!-- Region Filter Buttons -->
+            <div class="text-center mb-4">
+                <h4 class="fw-bold text-dark mb-3">กรองตามภูมิภาค</h4>
+                <div class="filter-container">
+                    <button class="btn btn-outline-accent region-filter active" onclick="filterByRegion('All', this)">ทั้งหมด (77)</button>
+                    <button class="btn btn-outline-accent region-filter" onclick="filterByRegion('Northern', this)">ภาคเหนือ (10)</button>
+                    <button class="btn btn-outline-accent region-filter" onclick="filterByRegion('Northeastern', this)">ภาคตะวันออกเฉียงเหนือ (21)</button>
+                    <button class="btn btn-outline-accent region-filter" onclick="filterByRegion('Central', this)">ภาคกลาง (21)</button>
+                    <button class="btn btn-outline-accent region-filter" onclick="filterByRegion('Southern', this)">ภาคใต้ (14)</button>
+                    <button class="btn btn-outline-accent region-filter" onclick="filterByRegion('Eastern', this)">ภาคตะวันออก (7)</button>
+                    <button class="btn btn-outline-accent region-filter" onclick="filterByRegion('Western', this)">ภาคตะวันตก (4)</button>
+                </div>
+            </div>
+            
+            <!-- Provinces Container -->
+            <div class="row g-4" id="provinces-container">
+                <!-- Province cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 display-6 fw-bold text-dark">ระบบเลเวลและรางวัล</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center p-4 bg-white rounded-4 shadow-lg border-top border-accent border-5 h-100">
+                        <i class="fas fa-seedling fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-2">Beginner</h5>
+                        <p class="text-secondary mb-3">Level 1-5</p>
+                        <ul class="list-unstyled text-start small text-secondary">
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>เขียนรีวิวได้</li>
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>แชร์รูปภาพได้</li>
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>ถาม-ตอบได้</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center p-4 bg-white rounded-4 shadow-lg border-top border-accent border-5 h-100">
+                        <i class="fas fa-hiking fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-2">Explorer</h5>
+                        <p class="text-secondary mb-3">Level 6-15</p>
+                        <ul class="list-unstyled text-start small text-secondary">
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>สิทธิ์ Beginner</li>
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>สร้างกลุ่มได้</li>
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>ส่วนลด 5%</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center p-4 bg-white rounded-4 shadow-lg border-top border-accent border-5 h-100">
+                        <i class="fas fa-compass fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-2">Adventurer</h5>
+                        <p class="text-secondary mb-3">Level 16-25</p>
+                        <ul class="list-unstyled text-start small text-secondary">
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>สิทธิ์ Explorer</li>
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>Badge พิเศษ</li>
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>ส่วนลด 10%</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card text-center p-4 bg-white rounded-4 shadow-lg border-top border-accent border-5 h-100">
+                        <i class="fas fa-crown fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-2">Master</h5>
+                        <p class="text-secondary mb-3">Level 26+</p>
+                        <ul class="list-unstyled text-start small text-secondary">
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>สิทธิ์ทั้งหมด</li>
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>ผู้เชี่ยวชาญ</li>
+                            <li class="mb-2"><i class="fas fa-check text-accent me-2"></i>ส่วนลด 20%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-accent text-white text-center">
+        <div class="container py-5">
+            <h2 class="display-5 fw-bold mb-4">เข้าร่วมชุมชนนักเดินทาง</h2>
+            <p class="lead mb-4">แบ่งปันประสบการณ์ เชื่อมต่อกับนักเดินทาง และสร้างความทรงจำที่ดีร่วมกัน</p>
+            <div class="d-flex gap-3 justify-content-center">
+                <a href="#" class="btn btn-light btn-lg px-5 py-3"><i class="fas fa-user-plus me-2"></i>เข้าร่วมฟรี</a>
+                <a href="index.html" class="btn btn-outline-light btn-lg px-5 py-3"><i class="fas fa-arrow-left me-2"></i>กลับหน้าหลัก</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 bg-dark">
+        <div class="container text-center">
+            <p class="mb-0 text-white-50">&copy; 2025 77 WONDERS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/provinces.js"></script>
+</body>
+</html>

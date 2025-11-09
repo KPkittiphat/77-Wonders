@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Plan - 77 Wonders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        :root {
+            --accent-color: #00C897;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            color: white;
+            padding: 100px 0 80px;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            background-size: 200% 200%;
+            animation: shine 3s linear infinite;
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(126, 34, 206, 0.3) !important;
+        }
+
+        .text-accent { color: var(--accent-color) !important; }
+        .bg-accent { background-color: var(--accent-color) !important; }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-accent:hover {
+            background-color: #00a67a;
+            border-color: #00a67a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 200, 151, 0.3);
+        }
+
+        .badge-premium {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1e3c72;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, #1e3c72 0%, #7e22ce 100%);
+            color: white;
+            padding: 20px;
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .check-icon {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        .times-icon {
+            color: #ccc;
+            font-size: 1.2rem;
+        }
+
+        .price-highlight {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .vip-badge {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1e3c72;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container py-2">
+            <a class="navbar-brand fw-bold text-dark" href="index.html">
+                <i class="fas fa-route text-accent"></i> 77 WONDERS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html#features">จุดเด่น</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html#price">รายการราคา</a></li>
+                    <li class="nav-item"><a class="nav-link btn bg-accent text-white ms-lg-3 px-4 shadow-sm" href="about.html">ทีมงาน</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section text-center">
+        <div class="container" style="position: relative; z-index: 1;">
+            <span class="vip-badge mb-3"><i class="fas fa-crown me-2"></i>VIP PREMIUM</span>
+            <i class="fas fa-gem fa-5x mb-4" style="animation: float 3s ease-in-out infinite;"></i>
+            <h1 class="display-3 fw-bold mb-3">Premium Plan</h1>
+            <div class="price-highlight">
+                <h2 class="display-4 fw-bold mb-2">฿999 / ปี</h2>
+                <p class="lead mb-0">ประหยัดกว่า 17% เมื่อเทียบรายเดือน</p>
+            </div>
+            <p class="lead mb-4" style="max-width: 800px; margin: 0 auto;">
+                แพ็คเกจสุดพรีเมียมสำหรับนักเดินทางมืออาชีพ<br>
+                ปลดล็อคทุกฟีเจอร์ พร้อมสิทธิพิเศษมากมาย
+            </p>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="text-center mb-2 fw-light text-secondary">ทำไมต้อง Premium Plan?</h2>
+            <h3 class="text-center mb-5 display-6 fw-bold text-dark">ฟีเจอร์ครบครัน สิทธิพิเศษสุดพรีเมียม</h3>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-5 h-100" style="border-color: #7e22ce;">
+                        <i class="fas fa-infinity fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">รวมทุกอย่างใน Standard</h5>
+                        <p class="text-secondary">ได้ฟีเจอร์ทั้งหมดของ Standard Plan บวกกับสิทธิพิเศษเพิ่มเติม</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-5 h-100" style="border-color: #7e22ce;">
+                        <i class="fas fa-eye-slash fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">Unseen ทั้งหมด</h5>
+                        <p class="text-secondary">เข้าถึงสถานที่ท่องเที่ยวลับทั้งหมดไม่จำกัด (500+ สถานที่)</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-5 h-100" style="border-color: #7e22ce;">
+                        <i class="fas fa-headset fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">ผู้ช่วยส่วนตัว 24/7</h5>
+                        <p class="text-secondary">บริการผู้ช่วยส่วนตัวตลอด 24 ชั่วโมงทุกช่องทาง</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-5 h-100" style="border-color: #7e22ce;">
+                        <i class="fas fa-percent fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">ส่วนลด 20%</h5>
+                        <p class="text-secondary">ส่วนลดพิเศษจากพาร์ทเนอร์ โรงแรม ร้านอาหาร และกิจกรรม</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-5 h-100" style="border-color: #7e22ce;">
+                        <i class="fas fa-calendar-check fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">จองล่วงหน้า</h5>
+                        <p class="text-secondary">จองที่พักและกิจกรรมผ่านแอปได้โดยตรง</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-5 h-100" style="border-color: #7e22ce;">
+                        <i class="fas fa-user-tie fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">ไกด์ท้องถิ่น</h5>
+                        <p class="text-secondary">เชื่อมต่อกับไกด์ท้องถิ่นมืออาชีพได้โดยตรง</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-5 h-100" style="border-color: #7e22ce;">
+                        <i class="fas fa-gift fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">ของขวัญพิเศษ</h5>
+                        <p class="text-secondary">รับของขวัญและคูปองพิเศษทุกเดือน</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-5 h-100" style="border-color: #7e22ce;">
+                        <i class="fas fa-users fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">ชุมชน VIP</h5>
+                        <p class="text-secondary">เข้าถึงชุมชน VIP และอีเวนต์พิเศษเฉพาะสมาชิก</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-5 h-100" style="border-color: #7e22ce;">
+                        <i class="fas fa-crown fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">Badge พิเศษ</h5>
+                        <p class="text-secondary">รับ Badge Premium และสิทธิพิเศษในชุมชน</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 display-6 fw-bold text-dark">สิทธิพิเศษเฉพาะ Premium</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded-4 shadow-lg h-100">
+                        <i class="fas fa-plane-departure fa-2x text-accent mb-3"></i>
+                        <h6 class="fw-bold text-dark mb-2">ประกันการเดินทาง</h6>
+                        <p class="text-secondary mb-0">ประกันการเดินทางฟรีสูงสุด 100,000 บาทต่อทริป</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded-4 shadow-lg h-100">
+                        <i class="fas fa-concierge-bell fa-2x text-accent mb-3"></i>
+                        <h6 class="fw-bold text-dark mb-2">บริการคอนเซียร์จ</h6>
+                        <p class="text-secondary mb-0">บริการจัดการทุกอย่างในการเดินทางของคุณ</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded-4 shadow-lg h-100">
+                        <i class="fas fa-car fa-2x text-accent mb-3"></i>
+                        <h6 class="fw-bold text-dark mb-2">รถเช่าส่วนลด</h6>
+                        <p class="text-secondary mb-0">ส่วนลดพิเศษ 25% จากพาร์ทเนอร์รถเช่า</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded-4 shadow-lg h-100">
+                        <i class="fas fa-utensils fa-2x text-accent mb-3"></i>
+                        <h6 class="fw-bold text-dark mb-2">ร้านอาหารพิเศษ</h6>
+                        <p class="text-secondary mb-0">จองโต๊ะล่วงหน้าและรับส่วนลดที่ร้านอาหารชั้นนำ</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded-4 shadow-lg h-100">
+                        <i class="fas fa-camera fa-2x text-accent mb-3"></i>
+                        <h6 class="fw-bold text-dark mb-2">ช่างภาพส่วนตัว</h6>
+                        <p class="text-secondary mb-0">บริการช่างภาพมืออาชีพในราคาพิเศษ</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="p-4 bg-white rounded-4 shadow-lg h-100">
+                        <i class="fas fa-trophy fa-2x text-accent mb-3"></i>
+                        <h6 class="fw-bold text-dark mb-2">รางวัลความภักดี</h6>
+                        <p class="text-secondary mb-0">สะสมแต้มและแลกของรางวัลพิเศษ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 display-6 fw-bold text-dark">เหมาะสำหรับ</h2>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <i class="fas fa-star fa-4x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">นักเดินทางมืออาชีพ</h5>
+                        <p class="text-secondary">ที่เดินทางบ่อยและต้องการบริการระดับพรีเมียม</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <i class="fas fa-users-cog fa-4x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">กลุ่มเพื่อน ครอบครัวใหญ่</h5>
+                        <p class="text-secondary">ที่ต้องการวางแผนทริปใหญ่และซับซ้อน</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="text-center p-4">
+                        <i class="fas fa-gem fa-4x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">ผู้ที่ชื่นชอบความหรูหรา</h5>
+                        <p class="text-secondary">ที่ต้องการประสบการณ์การเดินทางที่ดีที่สุด</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 display-6 fw-bold text-dark">เปรียบเทียบแพ็คเกจ</h2>
+            
+            <div class="table-responsive">
+                <table class="table comparison-table shadow-lg">
+                    <thead>
+                        <tr>
+                            <th>ฟีเจอร์</th>
+                            <th class="text-center">Basic</th>
+                            <th class="text-center">Standard</th>
+                            <th class="text-center" style="background: linear-gradient(135deg, #1e3c72 0%, #7e22ce 100%);">Premium</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ข้อมูล 77 จังหวัด</td>
+                            <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+                            <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+                            <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+                        </tr>
+                        <tr>
+                            <td>แผนที่ Offline</td>
+                            <td class="text-center"><i class="fas fa-times times-icon"></i></td>
+                            <td class="text-center">10 จังหวัด</td>
+                            <td class="text-center">ไม่จำกัด</td>
+                        </tr>
+                        <tr>
+                            <td>AI Trip Planner</td>
+                            <td class="text-center"><i class="fas fa-times times-icon"></i></td>
+                            <td class="text-center"><i class="fas fa-check check-icon"></i></td>
+                            <td class="text-center"><i class="fas fa-check check-icon"></i> + Advanced</td>
+                        </tr>
+                        <tr>
+                            <td>สถานที่ Unseen</td>
+                            <td class="text-center"><i class="fas fa-times times-icon"></i></td>
+                            <td class="text-center">50 สถานที่</td>
+                            <td class="text-center">ไม่จำกัด (500+)</td>
+                        </tr>
+                        <tr>
+                            <td>รูปภาพ & รีวิว</td>
+                            <td class="text-center">จำกัด</td>
+                            <td class="text-center">ไม่จำกัด</td>
+                            <td class="text-center">ไม่จำกัด</td>
+                        </tr>
+                        <tr>
+                            <td>โฆษณา</td>
+                            <td class="text-center">มี</td>
+                            <td class="text-center">ไม่มี</td>
+                            <td class="text-center">ไม่มี</td>
+                        </tr>
+                        <tr>
+                            <td>การสนับสนุน</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">อีเมล 24 ชม.</td>
+                            <td class="text-center">24/7 ทุกช่องทาง</td>
+                        </tr>
+                        <tr>
+                            <td>ส่วนลด</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">20-25%</td>
+                        </tr>
+                        <tr>
+                            <td>ประกันการเดินทาง</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">100,000 บาท</td>
+                        </tr>
+                        <tr>
+                            <td>บริการพิเศษ</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">-</td>
+                            <td class="text-center">คอนเซียร์จ, ไกด์, VIP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ราคา</strong></td>
+                            <td class="text-center fw-bold">ฟรี</td>
+                            <td class="text-center fw-bold">฿99/เดือน</td>
+                            <td class="text-center fw-bold text-accent">฿999/ปี</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5" style="background: linear-gradient(135deg, #1e3c72 0%, #7e22ce 100%);">
+        <div class="container py-5 text-white text-center">
+            <i class="fas fa-crown fa-4x mb-4"></i>
+            <h2 class="display-5 fw-bold mb-4">เข้าร่วม Premium Club วันนี้</h2>
+            <p class="lead mb-4">ปลดล็อคประสบการณ์การเดินทางระดับพรีเมียม<br>พร้อมสิทธิพิเศษมากมายที่รอคุณอยู่</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="#" class="btn btn-light btn-lg px-5 py-3"><i class="fas fa-gem me-2"></i>สมัคร Premium ตอนนี้</a>
+                <a href="pricing-basic.html" class="btn btn-outline-light btn-lg px-5 py-3">ดู Basic Plan</a>
+                <a href="pricing-standard.html" class="btn btn-outline-light btn-lg px-5 py-3">ดู Standard Plan</a>
+            </div>
+            <p class="mt-4 mb-0"><small>💳 ชำระเงินปลอดภัย 100% | 🔄 ยกเลิกได้ทุกเวลา | 💰 รับประกันคืนเงิน 30 วัน</small></p>
+        </div>
+    </section>
+
+    <footer class="py-4 bg-dark">
+        <div class="container text-center">
+            <p class="mb-0 text-white-50">&copy; 2025 77 WONDERS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trip Planner - 77 Wonders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        :root {
+            --accent-color: #00C897;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 0 80px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .feature-card {
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 200, 151, 0.3) !important;
+        }
+
+        .step-card {
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .step-card:nth-child(1) { animation-delay: 0.1s; }
+        .step-card:nth-child(2) { animation-delay: 0.2s; }
+        .step-card:nth-child(3) { animation-delay: 0.3s; }
+        .step-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .text-accent { color: var(--accent-color) !important; }
+        .bg-accent { background-color: var(--accent-color) !important; }
+        
+        .btn-accent {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .btn-accent:hover {
+            background-color: #00a67a;
+            border-color: #00a67a;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 200, 151, 0.3);
+        }
+
+        .ai-feature {
+            padding: 30px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .ai-feature:hover {
+            background: rgba(0, 200, 151, 0.05);
+            transform: translateX(10px);
+        }
+
+        .demo-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+            padding: 30px;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container py-2">
+            <a class="navbar-brand fw-bold text-dark" href="index.html">
+                <i class="fas fa-route text-accent"></i> 77 WONDERS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html#features">จุดเด่น</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html#price">รายการราคา</a></li>
+                    <li class="nav-item"><a class="nav-link btn bg-accent text-white ms-lg-3 px-4 shadow-sm" href="about.html">ทีมงาน</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section text-center">
+        <div class="container">
+            <i class="fas fa-robot fa-5x mb-4" style="animation: float 3s ease-in-out infinite;"></i>
+            <h1 class="display-3 fw-bold mb-3">AI Trip Planner</h1>
+            <p class="lead mb-4" style="max-width: 800px; margin: 0 auto;">
+                ปัญญาประดิษฐ์ที่จะช่วยวางแผนการเดินทางของคุณ<br>
+                ปรับแต่งเส้นทางให้เหมาะกับความสนใจและสไตล์การเที่ยวของคุณ
+            </p>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="text-center mb-2 fw-light text-secondary">ทำไมต้องใช้ AI Trip Planner?</h2>
+            <h3 class="text-center mb-5 display-6 fw-bold text-dark">วางแผนทริปอัจฉริยะในไม่กี่นาที</h3>
+            
+            <div class="row g-5">
+                <div class="col-md-6">
+                    <div class="ai-feature bg-light rounded-4">
+                        <i class="fas fa-brain fa-3x text-accent mb-3"></i>
+                        <h4 class="fw-bold text-dark mb-3">เรียนรู้ความชอบของคุณ</h4>
+                        <p class="text-secondary mb-0">AI จะวิเคราะห์ความสนใจ งบประมาณ และสไตล์การเที่ยวของคุณ เพื่อแนะนำสถานที่ที่เหมาะสมที่สุด</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="ai-feature bg-light rounded-4">
+                        <i class="fas fa-clock fa-3x text-accent mb-3"></i>
+                        <h4 class="fw-bold text-dark mb-3">ประหยัดเวลา</h4>
+                        <p class="text-secondary mb-0">ไม่ต้องใช้เวลาหลายชั่วโมงในการวางแผน AI จะจัดเส้นทางที่เหมาะสมให้คุณภายในไม่กี่วินาที</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="ai-feature bg-light rounded-4">
+                        <i class="fas fa-route fa-3x text-accent mb-3"></i>
+                        <h4 class="fw-bold text-dark mb-3">เส้นทางที่เหมาะสม</h4>
+                        <p class="text-secondary mb-0">คำนวณระยะทาง เวลาเดินทาง และจัดลำดับสถานที่ให้เหมาะสมที่สุด ไม่เสียเวลาเดินทางซ้ำซ้อน</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="ai-feature bg-light rounded-4">
+                        <i class="fas fa-sync-alt fa-3x text-accent mb-3"></i>
+                        <h4 class="fw-bold text-dark mb-3">ปรับแต่งได้ตลอดเวลา</h4>
+                        <p class="text-secondary mb-0">เปลี่ยนแปลงแผนได้ทันที AI จะปรับเส้นทางใหม่ให้อัตโนมัติตามความต้องการของคุณ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 display-6 fw-bold text-dark">วิธีใช้งาน AI Trip Planner</h2>
+            
+            <div class="row g-5">
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card text-center">
+                        <div class="step-number">1</div>
+                        <i class="fas fa-map-marker-alt fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">เลือกจุดหมาย</h5>
+                        <p class="text-secondary">บอก AI ว่าคุณอยากไปจังหวัดไหน หรือภูมิภาคไหน</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card text-center">
+                        <div class="step-number">2</div>
+                        <i class="fas fa-sliders-h fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">ตั้งค่าความชอบ</h5>
+                        <p class="text-secondary">เลือกประเภทสถานที่ งบประมาณ และระยะเวลาที่ต้องการ</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card text-center">
+                        <div class="step-number">3</div>
+                        <i class="fas fa-magic fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">AI วางแผนให้</h5>
+                        <p class="text-secondary">รอเพียงไม่กี่วินาที AI จะสร้างแผนการเดินทางที่สมบูรณ์แบบ</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3">
+                    <div class="step-card text-center">
+                        <div class="step-number">4</div>
+                        <i class="fas fa-check-circle fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">เริ่มเดินทาง</h5>
+                        <p class="text-secondary">บันทึกแผนและเริ่มต้นการผจญภัยของคุณได้เลย</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 display-6 fw-bold text-dark">ฟีเจอร์พิเศษของ AI</h2>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-accent border-5 h-100">
+                        <i class="fas fa-weather-sun fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">พยากรณ์อากาศ</h5>
+                        <p class="text-secondary">AI จะตรวจสอบสภาพอากาศและแนะนำวันที่เหมาะสมในการเดินทาง</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-accent border-5 h-100">
+                        <i class="fas fa-users fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">คำนึงถึงจำนวนคน</h5>
+                        <p class="text-secondary">วางแผนตามจำนวนผู้เดินทาง เหมาะสำหรับทั้งคนเดียว คู่รัก หรือกลุ่มใหญ่</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-accent border-5 h-100">
+                        <i class="fas fa-wallet fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">คำนวณงบประมาณ</h5>
+                        <p class="text-secondary">ประมาณการค่าใช้จ่ายทั้งหมด รวมที่พัก อาหาร และค่าเข้าชม</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-accent border-5 h-100">
+                        <i class="fas fa-utensils fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">แนะนำร้านอาหาร</h5>
+                        <p class="text-secondary">AI จะแนะนำร้านอาหารที่อยู่ใกล้เส้นทางและได้รับรีวิวดี</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-accent border-5 h-100">
+                        <i class="fas fa-hotel fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">จองที่พัก</h5>
+                        <p class="text-secondary">เชื่อมต่อกับระบบจองที่พัก เลือกโรงแรมที่เหมาะสมได้ทันที</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4">
+                    <div class="feature-card p-4 bg-light rounded-4 shadow-lg border-top border-accent border-5 h-100">
+                        <i class="fas fa-share-alt fa-3x text-accent mb-3"></i>
+                        <h5 class="fw-bold text-dark mb-3">แชร์แผนการเดินทาง</h5>
+                        <p class="text-secondary">แชร์แผนให้เพื่อนๆ ได้เห็น หรือส่งออกเป็น PDF</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-light">
+        <div class="container py-5">
+            <h2 class="text-center mb-5 display-6 fw-bold text-dark">ตัวอย่างแผนการเดินทาง</h2>
+            
+            <div class="demo-card">
+                <div class="d-flex align-items-center mb-4">
+                    <i class="fas fa-map-marked-alt fa-3x text-accent me-3"></i>
+                    <div>
+                        <h4 class="fw-bold text-dark mb-1">ทริป 3 วัน 2 คืน เชียงใหม่</h4>
+                        <p class="text-secondary mb-0">งบประมาณ: 5,000 บาท/คน | ประเภท: ธรรมชาติ + วัฒนธรรม</p>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3 p-4 mb-3">
+                    <h5 class="fw-bold text-accent mb-3"><i class="fas fa-calendar-day me-2"></i>วันที่ 1</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>09:00</strong> - ออกเดินทางจากกรุงเทพฯ</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>12:00</strong> - ถึงเชียงใหม่ + เช็คอินโรงแรม</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>14:00</strong> - วัดพระธาตุดอยสุเทพ</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>17:00</strong> - ตลาดวโรรส</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>19:00</strong> - ถนนคนเดินวันอาทิตย์</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-3 p-4 mb-3">
+                    <h5 class="fw-bold text-accent mb-3"><i class="fas fa-calendar-day me-2"></i>วันที่ 2</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>07:00</strong> - ดอยอินทนนท์</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>12:00</strong> - ร้านอาหารท้องถิ่น</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>14:00</strong> - หมู่บ้านม้ง</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>17:00</strong> - น้ำตกแม่กลาง</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>19:00</strong> - กลับโรงแรม</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-3 p-4">
+                    <h5 class="fw-bold text-accent mb-3"><i class="fas fa-calendar-day me-2"></i>วันที่ 3</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>08:00</strong> - ตลาดเช้าสมเป็ง</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>10:00</strong> - วัดเจดีย์หลวง</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>12:00</strong> - ข้าวซอยแม่สาย</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>14:00</strong> - ช้อปปิ้งของฝาก</li>
+                        <li class="mb-2"><i class="fas fa-clock text-accent me-2"></i><strong>16:00</strong> - เดินทางกลับกรุงเทพฯ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-5 bg-accent text-white text-center">
+        <div class="container py-5">
+            <h2 class="display-5 fw-bold mb-4">ให้ AI วางแผนทริปในฝันของคุณ</h2>
+            <p class="lead mb-4">เริ่มต้นใช้งาน AI Trip Planner ฟรีวันนี้</p>
+            <div class="d-flex gap-3 justify-content-center">
+                <a href="#" class="btn btn-light btn-lg px-5 py-3"><i class="fas fa-magic me-2"></i>เริ่มวางแผนเลย</a>
+                <a href="index.html" class="btn btn-outline-light btn-lg px-5 py-3"><i class="fas fa-arrow-left me-2"></i>กลับหน้าหลัก</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 bg-dark">
+        <div class="container text-center">
+            <p class="mb-0 text-white-50">&copy; 2025 77 WONDERS. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

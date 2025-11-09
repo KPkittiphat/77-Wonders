@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>77 Wonders App - แอปพลิเคชันท่องเที่ยว 77 จังหวัด</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* Enhanced Theme Styling */
+        :root {
+            --accent-color: #00C897;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Fade In Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        /* Navbar Animation */
+        .navbar {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        /* Hero Section Animations */
+        #header h1 {
+            animation: slideInLeft 1s ease-out;
+        }
+
+        #header p {
+            animation: slideInLeft 1.2s ease-out;
+        }
+
+        #header .btn {
+            animation: slideInLeft 1.4s ease-out;
+        }
+
+        #header img {
+            animation: slideInRight 1s ease-out, float 3s ease-in-out infinite;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #header img:hover {
+            transform: scale(1.05) rotate(2deg);
+            animation: none;
+        }
+
+        /* Feature Cards with Staggered Animation */
+        .feature-card {
+            animation: fadeInUp 0.8s ease-out;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 200, 151, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 200, 151, 0.3) !important;
+        }
+
+        /* Icon Animation with Bounce */
+        .feature-card i {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: inline-block;
+        }
+
+        .feature-card:hover i {
+            transform: scale(1.2) rotate(360deg);
+            color: #00a67a;
+        }
+
+        /* Pricing Cards with Advanced Effects */
+        .pricing-card {
+            animation: fadeInUp 1s ease-out;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card:nth-child(1) { animation-delay: 0.2s; }
+        .pricing-card:nth-child(2) { animation-delay: 0.3s; }
+        .pricing-card:nth-child(3) { animation-delay: 0.4s; }
+
+        .pricing-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 200, 151, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .pricing-card:hover::after {
+            opacity: 1;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* Featured Plan Pulse Animation */
+        .pricing-card.featured {
+            animation: fadeInUp 1s ease-out, pulse 2s ease-in-out infinite;
+        }
+
+        /* Button Styles with Ripple Effect */
+        .text-accent { color: var(--accent-color) !important; }
+        .bg-accent { background-color: var(--accent-color) !important; color: white !important; }
+        
+        .btn-accent, .btn-outline-accent, .btn-outline-dark {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+
+        .btn-accent::before, .btn-outline-accent::before, .btn-outline-dark::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .btn-accent:hover::before, .btn-outline-accent:hover::before, .btn-outline-dark:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-accent { 
+            background-color: var(--accent-color); 
+            border-color: var(--accent-color);
+            color: white;
+        }
+        
+        .btn-accent:hover { 
+            background-color: #00a67a; 
+            border-color: #00a67a;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 200, 151, 0.4);
+        }
+        
+        .btn-outline-accent { 
+            border-color: var(--accent-color); 
+            color: var(--accent-color); 
+            border-width: 2px;
+        }
+        
+        .btn-outline-accent:hover { 
+            background-color: var(--accent-color); 
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 200, 151, 0.3);
+        }
+
+        .btn-outline-dark:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Social Icons with Advanced Hover */
+        .hover-accent {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            display: inline-block;
+        }
+
+        .hover-accent:hover {
+            color: var(--accent-color) !important;
+            transform: translateY(-5px) scale(1.2) rotate(5deg);
+        }
+
+        /* Section Titles Animation */
+        .section-title {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        /* Gradient Text Effect */
+        .gradient-text {
+            background: linear-gradient(45deg, var(--accent-color), #00e5a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            background-size: 200% auto;
+        }
+
+        /* Badge Bounce */
+        .badge {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        /* List Items Fade In */
+        .pricing-card li {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .pricing-card li:nth-child(1) { animation-delay: 0.1s; }
+        .pricing-card li:nth-child(2) { animation-delay: 0.2s; }
+        .pricing-card li:nth-child(3) { animation-delay: 0.3s; }
+        .pricing-card li:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Navbar Brand Hover */
+        .navbar-brand {
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+            color: var(--accent-color) !important;
+        }
+
+        .navbar-brand i {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand:hover i {
+            transform: rotate(360deg);
+        }
+
+        /* Nav Links Hover Effect */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Footer Animation */
+        footer {
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Scroll Reveal Effect */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Review Card Styles */
+        .review-card {
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .review-card:nth-child(1) { animation-delay: 0.1s; }
+        .review-card:nth-child(2) { animation-delay: 0.2s; }
+        .review-card:nth-child(3) { animation-delay: 0.3s; }
+        .review-card:nth-child(4) { animation-delay: 0.4s; }
+        .review-card:nth-child(5) { animation-delay: 0.5s; }
+        .review-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .review-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 200, 151, 0.3) !important;
+        }
+
+        .review-card img {
+            transition: transform 0.5s ease;
+        }
+
+        .review-card:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-light" data-bs-spy="scroll" data-bs-target="#main-nav" data-bs-offset="100">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm" id="main-nav">
+        <div class="container py-2">
+            <a class="navbar-brand fw-bold text-dark" href="#">
+                <i class="fas fa-route text-accent"></i> 77 WONDERS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-dark" href="#header">หน้าแรก</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#features">จุดเด่น</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#price">รายการราคา</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="#contact">ติดต่อเรา</a></li>
+                    <li class="nav-item"><a class="nav-link btn bg-accent text-white ms-lg-3 px-4 shadow-sm" href="about.html">ทีมงาน <i class="fas fa-users ms-1"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="header" class="text-center text-md-start bg-white shadow-sm">
+            <div class="container py-5">
+                <div class="row align-items-center flex-md-row-reverse py-5 my-5">
+                    
+                    <div class="col-md-6 mb-5 mb-md-0">
+                        <!-- <img src="assets/images/app-screenshot.png" class="img-fluid rounded-4 shadow-lg" alt="หน้าจอแอปพลิเคชัน 77 Wonders"> -->
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <h1 class="display-3 fw-light mb-3">ค้นพบความมหัศจรรย์ <span class="fw-bold text-accent">77 จังหวัด</span></h1>
+                        <p class="lead mb-4 text-secondary" style="line-height: 1.8;"><strong>77 Wonders</strong> คือไกด์นำเที่ยวส่วนตัว ที่จะพาคุณไปสำรวจสถานที่ลับและวางแผนทริปทั่วไทยอย่างง่ายดาย</p>
+                        
+                        <div class="d-grid gap-3 d-sm-flex justify-content-center justify-content-md-start mt-4">
+                            <a href="#" class="btn btn-accent btn-lg px-5 py-3 shadow-lg"><i class="fab fa-apple me-2"></i> ดาวน์โหลดฟรี!</a>
+                            <a href="#features" class="btn btn-outline-accent btn-lg px-5 py-3"><i class="fas fa-arrow-circle-down me-2"></i> เรียนรู้เพิ่มเติม</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="py-5 bg-light">
+            <div class="container py-5">
+                <h2 class="text-center mb-2 fw-light text-secondary section-title">คุณสมบัติเด่น</h2>
+                <h3 class="text-center mb-5 display-5 fw-bold text-dark section-title">ทำไมต้อง <span class="gradient-text">77 Wonders</span>?</h3>
+                
+                <div class="row text-center g-5">
+                    
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="feature-card p-5 rounded-4 bg-white shadow-lg border-top border-accent border-5 h-100">
+                            <i class="fas fa-compass fa-4x text-accent mb-4"></i>
+                            <h4 class="fw-bold text-dark mb-3">Unseen Discovery</h4>
+                            <p class="text-secondary" style="line-height: 1.8;">เปิดโลกใหม่ด้วยข้อมูลสถานที่ท่องเที่ยวลับที่ไม่ปรากฏในแผนที่ทั่วไปของทั้ง 77 จังหวัด</p>
+                            <a href="unseen-discovery.html" class="btn btn-sm btn-outline-accent mt-3 px-4">สำรวจเลย <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="feature-card p-5 rounded-4 bg-white shadow-lg border-top border-accent border-5 h-100">
+                            <i class="fas fa-robot fa-4x text-accent mb-4"></i>
+                            <h4 class="fw-bold text-dark mb-3">AI Trip Planner</h4>
+                            <p class="text-secondary" style="line-height: 1.8;">วางแผนการเดินทางอัจฉริยะที่ปรับเปลี่ยนเส้นทางให้เข้ากับความสนใจและสไตล์การเที่ยวของคุณได้ทันที</p>
+                            <a href="ai-trip-planner.html" class="btn btn-sm btn-outline-accent mt-3 px-4">เริ่มวางแผน <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="feature-card p-5 rounded-4 bg-white shadow-lg border-top border-accent border-5 h-100">
+                            <i class="fas fa-users fa-4x text-accent mb-4"></i>
+                            <h4 class="fw-bold text-dark mb-3">Community & Review</h4>
+                            <p class="text-secondary" style="line-height: 1.8;">เชื่อมต่อกับนักเดินทางคนอื่น ๆ อ่านรีวิวแบบเรียลไทม์ และแบ่งปันประสบการณ์ของคุณได้อย่างง่ายดาย</p>
+                            <a href="community-review.html" class="btn btn-sm btn-outline-accent mt-3 px-4">เข้าสู่ชุมชน <i class="fas fa-arrow-right ms-2"></i></a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+        
+        <section id="price" class="py-5 bg-white shadow-sm">
+            <div class="container py-5">
+                <h2 class="text-center mb-2 fw-light text-secondary section-title">คุ้มค่ากว่าที่คิด</h2>
+                <h3 class="text-center mb-5 display-5 fw-bold text-dark section-title">แผนบริการที่เหมาะกับ<span class="gradient-text">ทุกการเดินทาง</span></h3>
+                
+                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center g-5">
+                    
+                    <div class="col">
+                        <div class="pricing-card card mb-4 rounded-4 shadow-lg border-0 h-100">
+                            <div class="card-header py-4 bg-light rounded-top-4 border-0">
+                                <h4 class="my-0 fw-bold text-dark">Basic</h4>
+                            </div>
+                            <div class="card-body p-4">
+                                <h1 class="card-title pricing-card-title display-4 fw-bold text-dark">฿0<small class="text-muted fw-light fs-6"> / ตลอดชีพ</small></h1>
+                                <ul class="list-unstyled mt-4 mb-4 text-start">
+                                    <li class="mb-3"><i class="fas fa-check-circle text-accent me-2"></i> ข้อมูล 77 จังหวัดพื้นฐาน</li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-accent me-2"></i> วางแผนทริปด้วยตนเอง</li>
+                                    <li class="mb-3"><i class="fas fa-times-circle text-secondary me-2"></i> แผนที่ Offline</li>
+                                    <li class="mb-3"><i class="fas fa-times-circle text-secondary me-2"></i> AI Trip Planner</li>
+                                </ul>
+                                <a href="pricing-basic.html" class="w-100 btn btn-lg btn-outline-dark mt-3 py-3">ดูรายละเอียด</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <div class="pricing-card featured card mb-4 rounded-4 shadow-lg border-accent border-4 h-100" style="transform: scale(1.05);">
+                            <div class="card-header py-4 bg-accent text-white rounded-top-4 border-0">
+                                <h4 class="my-0 fw-bold">Standard <span class="badge bg-white text-accent ms-2 fs-6">⭐ ยอดนิยม</span></h4>
+                            </div>
+                            <div class="card-body p-4">
+                                <h1 class="card-title pricing-card-title display-4 fw-bold text-accent">฿99<small class="text-muted fw-light fs-6"> / เดือน</small></h1>
+                                <ul class="list-unstyled mt-4 mb-4 text-start">
+                                    <li class="mb-3"><i class="fas fa-check-circle text-accent me-2"></i> <strong>รวมทุกอย่างใน Basic</strong></li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-accent me-2"></i> แผนที่และข้อมูล Offline</li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-accent me-2"></i> คำแนะนำ AI ส่วนตัว</li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-accent me-2"></i> รีวิวจากชุมชน</li>
+                                </ul>
+                                <a href="pricing-standard.html" class="w-100 btn btn-lg btn-accent text-white mt-3 py-3 shadow">ดูรายละเอียด</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col">
+                        <div class="pricing-card card mb-4 rounded-4 shadow-lg border-0 h-100">
+                            <div class="card-header py-4 bg-dark text-white rounded-top-4 border-0">
+                                <h4 class="my-0 fw-bold">Premium</h4>
+                            </div>
+                            <div class="card-body p-4">
+                                <h1 class="card-title pricing-card-title display-4 fw-bold text-dark">฿999<small class="text-muted fw-light fs-6"> / ปี</small></h1>
+                                <ul class="list-unstyled mt-4 mb-4 text-start">
+                                    <li class="mb-3"><i class="fas fa-check-circle text-accent me-2"></i> <strong>รวมทุกอย่างใน Standard</strong></li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-accent me-2"></i> เข้าถึงสถานที่ลับ (Unseen) ทั้งหมด</li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-accent me-2"></i> บริการผู้ช่วยส่วนตัว 24 ชม.</li>
+                                    <li class="mb-3"><i class="fas fa-check-circle text-accent me-2"></i> ส่วนลดพิเศษจากพาร์ทเนอร์</li>
+                                </ul>
+                                <a href="pricing-premium.html" class="w-100 btn btn-lg btn-outline-dark mt-3 py-3">ดูรายละเอียด</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5 bg-light">
+            <div class="container py-5">
+                <h2 class="text-center mb-2 fw-light text-secondary section-title">เสียงจากผู้ใช้งานจริง</h2>
+                <h3 class="text-center mb-5 display-5 fw-bold text-dark section-title">ตัวอย่างรีวิวจาก <br><span class="gradient-text">ทั่วทุกมุมประเทศ</span></h3>
+                
+                <div class="row g-4 mb-4">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="review-card bg-white rounded-4 shadow-lg overflow-hidden h-100">
+                            <img src="https://paapaii.com/wp-content/uploads/2017/04/Erawan-waterfall-1.jpg" class="w-100" style="height: 200px; object-fit: cover;" alt="น้ำตกเอราวัณ">
+                            <div class="p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://i.pravatar.cc/150?img=1" alt="User" class="rounded-circle me-3" style="width: 50px; height: 50px; border: 2px solid var(--accent-color);">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-0">สมชาย ใจดี</h6>
+                                        <small class="text-muted">กาญจนบุรี</small>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark mb-2">น้ำตกเอราวัณ</h6>
+                                <p class="text-secondary small mb-0">"สวยมากครับ น้ำใสสะอาด แนะนำให้ไปช่วงเช้า จะได้ถ่ายรูปสวยๆ คนไม่เยอะ"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="review-card bg-white rounded-4 shadow-lg overflow-hidden h-100">
+                            <img src="https://cms.dmpcdn.com/travel/2025/04/04/c1e4fc40-110a-11f0-a7a4-63d1736630f3_webp_original.webp" class="w-100" style="height: 200px; object-fit: cover;" alt="ภูทับเบิก">
+                            <div class="p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://i.pravatar.cc/150?img=5" alt="User" class="rounded-circle me-3" style="width: 50px; height: 50px; border: 2px solid var(--accent-color);">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-0">มาลี สวยงาม</h6>
+                                        <small class="text-muted">เพชรบูรณ์</small>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark mb-2">ทะเลหมอกภูทับเบิก</h6>
+                                <p class="text-secondary small mb-0">"ทะเลหมอกสวยมากค่ะ ต้องตื่นเช้ามาก แต่คุ้มค่ามากๆ วิวสวยสุดๆ อากาศดีมาก"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="review-card bg-white rounded-4 shadow-lg overflow-hidden h-100">
+                            <img src="https://www.chiangraifocus.com/wp-content/uploads/2021/11/G21kgPM9vhsIbj7LNSlMJaDO03Rjnm2nuGWPXOUS.jpeg" class="w-100" style="height: 200px; object-fit: cover;" alt="ภูชี้ฟ้า">
+                            <div class="p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://i.pravatar.cc/150?img=8" alt="User" class="rounded-circle me-3" style="width: 50px; height: 50px; border: 2px solid var(--accent-color);">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-0">ปิยะ เที่ยวสนุก</h6>
+                                        <small class="text-muted">เชียงราย</small>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark mb-2">ภูชี้ฟ้า</h6>
+                                <p class="text-secondary small mb-0">"วิวสวยมาก ทะเลหมอกสุดยอด ต้องมาดูสักครั้งในชีวิต แนะนำเลยครับ"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="review-card bg-white rounded-4 shadow-lg overflow-hidden h-100">
+                            <img src="https://img.wongnai.com/p/1600x0/2019/08/01/7521ec03ee454301be4a69e2ab7cfe44.jpg" class="w-100" style="height: 200px; object-fit: cover;" alt="เกาะหลีเป๊ะ">
+                            <div class="p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://i.pravatar.cc/150?img=12" alt="User" class="rounded-circle me-3" style="width: 50px; height: 50px; border: 2px solid var(--accent-color);">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-0">วิชัย ท่องโลก</h6>
+                                        <small class="text-muted">สตูล</small>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark mb-2">เกาะหลีเป๊ะ</h6>
+                                <p class="text-secondary small mb-0">"ทะเลสวยมาก น้ำใส ปะการังสวย แนะนำให้ไปช่วงพฤศจิกายน-มีนาคม"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="review-card bg-white rounded-4 shadow-lg overflow-hidden h-100">
+                            <img src="https://cms.dmpcdn.com/travel/2020/05/28/ef9f5c10-a0b3-11ea-81a6-432b2bbc8436_original.jpg" class="w-100" style="height: 200px; object-fit: cover;" alt="ตลาดน้ำดำเนินสะดวก">
+                            <div class="p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://i.pravatar.cc/150?img=20" alt="User" class="rounded-circle me-3" style="width: 50px; height: 50px; border: 2px solid var(--accent-color);">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-0">นภา ชอบเที่ยว</h6>
+                                        <small class="text-muted">ราชบุรี</small>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark mb-2">ตลาดน้ำดำเนินสะดวก</h6>
+                                <p class="text-secondary small mb-0">"บรรยากาศดีมาก ของกินเยอะ ราคาไม่แพง แนะนำให้ไปช่วงเช้าตรู่"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="review-card bg-white rounded-4 shadow-lg overflow-hidden h-100">
+                            <img src="https://www.gooutthailand.com/wp-content/uploads/2022/09/doi-ang-khang-1-750x550.jpg" class="w-100" style="height: 200px; object-fit: cover;" alt="ดอยอ่างขาง">
+                            <div class="p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="https://i.pravatar.cc/150?img=33" alt="User" class="rounded-circle me-3" style="width: 50px; height: 50px; border: 2px solid var(--accent-color);">
+                                    <div>
+                                        <h6 class="fw-bold text-dark mb-0">ธนา รักธรรมชาติ</h6>
+                                        <small class="text-muted">เชียงใหม่</small>
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                    <i class="fas fa-star text-warning"></i>
+                                </div>
+                                <h6 class="fw-bold text-dark mb-2">ดอยอ่างขาง</h6>
+                                <p class="text-secondary small mb-0">"ซากุระบานสวยมาก ช่วงมกราคม-กุมภาพันธ์ แนะนำให้ไปเช้าๆ อากาศเย็นสบาย"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </section>
+        
+    </main>
+    
+    <footer id="contact" class="py-5 bg-dark">
+        <div class="container text-center py-4">
+            <h5 class="mb-4 fw-light text-white">เชื่อมต่อกับเรา</h5>
+            <div class="mb-4">
+                <a href="https://github.com/KPkittiphat" target="_blank" class="text-white-50 mx-3 hover-accent d-inline-block"><i class="fab fa-github fa-2x"></i></a>
+            </div>
+            <hr class="mt-4 mb-4 border-light opacity-25">
+            <p class="mb-0 text-white-50">&copy; 2025 77 WONDERS. All Rights Reserved. | Create By Kittiphat </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
