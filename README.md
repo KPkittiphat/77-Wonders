@@ -27,6 +27,7 @@
 ---
 
 ## โครงสร้างโฟลเดอร์ (ย่อ)
+- frontend/
   - index.html
   - ai-trip-planner.html
   - unseen-discovery.html
@@ -38,6 +39,5 @@
   - assets/
     - provinces.js
     - styles.css
-
 
 
